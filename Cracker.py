@@ -10,18 +10,24 @@ class Cracker:
         r = session()
         prox = proxy.pop()
         try:
-            data = r.get('https://shadowservants.ru/login',proxies={'http': "http://"+prox},timeout=5).text
+            r.proxies = {'https': 'https://'+prox}
+            data = r.get('https://shadowservants.ru/login',timeout=5).text
             reg = re.findall(r'<meta name=\"csrf_token\" content=\"[A-Za-z0-9.-]+\" />',data)
             if len(str(reg)) < 3:
                 time.sleep(1)
-                session_get(proxy)
+                print('\nHmmm. Looks like bad proxy: ' + prox + ' I\'ll repair it.')
+                self.session_get(proxy)
+                return
             csrf = str(reg).split()[2]
             csrf = csrf.split('"')
             csrf = csrf[1].replace('"','')
             self.auth(r,csrf,prox)
         except exceptions.Timeout as e:
-                print(str(e))
-                self.session_get()
+            print(str(e))
+            self.session_get(proxy)
+        except exceptions.ProxyError:
+            print('\nHmmm. Looks like bad proxy: ' + prox + ' I\'ll repair it.')
+            self.session_get(proxy)
     def auth(self,r,csrf,prox):
         login = input('Enter login: ')
         password = input('Enter password: ')

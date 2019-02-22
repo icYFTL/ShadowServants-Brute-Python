@@ -18,4 +18,4 @@ class ProxyWorker (object):
         return proxies
     
     def AutoGrabber():
-        return BadParser.Grab()
+        return BadParser.Grab(5)

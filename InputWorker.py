@@ -21,6 +21,7 @@ class InputWorker(object):
             else:
                 if (selected_proxy == 'y'):
                     selected_proxy = True
+                    print('By the way. Default count of grubbing proxies is about 100. You can\'t change it. Now.')
                 else:
                     selected_proxy = False
                 break
