@@ -1,35 +1,36 @@
-# Version 0.2
+# Version 0.3
 
-import cfscrape
 import re
+import requests
 import Stopwatch
 
+true_set = []
+handled = 0
+
 class BadParser(object):
-    def Grab():
-        r = cfscrape.create_scraper()
-        handled = 0
-        true_set = []
-
-        print('[Bad parser v0.2 beta]\n')
-
-        print('Wait for data from proxy server.\n')
-        timer = Stopwatch.create_thread()
-        data = r.get("https://hidemyna.me/ru/proxy-list/").text
-        print('Got data. Parsing initializated.\nTime spent: '+str(timer.secs) + ' secs.\n')
-        timer.kill_thread()
-
-        try:
-
-            proxy = re.findall(r'<td class=tdl>[0-9]+.[0-9]+.[0-9]+.[0-9]+<\/td><td>[0-9]{1,5}', data)
-
+    def Grab(page):
+        print('[Bad parser v0.3 beta]\n')
+        global true_set
+        global handled
+        while page != 0:
+            print('Wait for data from proxy server.\n')
+            timer = Stopwatch.create_thread()
+            data = requests.get("https://proxylist.me/?protocol=1&filtrar=Filtrar&page="+str(page)).text
+            print('Got data. Parsing initializated.\nTime spent: '+str(timer.secs) + ' secs.\n')
+            timer.kill_thread()
+            data = data.replace(' ','')
+            proxy = re.findall(r'<tdclass=\"ip\"><ahref=\"[A-Za-z\/0-9-]+\">[0-9]+.[0-9]+.[0-9]+.[0-9]+</a></td>\n\n<tdclass=\"port\">[0-9]+', data)
             for i in proxy:
+                prox = ''
                 i = str(i)
-                i = i.replace('<td class=tdl>','')
-                i = i.replace('</td><td>',':')
-                true_set.append(i)
+                i = i.replace('</a></td>\n\n<tdclass="port">',':')
+                found = False
+                for j in range(len(i)):
+                    if (str.isdecimal(i[j]) and i[j-1] == '>') or (found):
+                        found = True
+                        prox += i[j]
+                true_set.append(prox)
                 handled += 1
-                print('Proxy handled: ' + str(handled))
-            raise KeyboardInterrupt
-        except KeyboardInterrupt:
-            print('\nOk. Work done.')
-            return true_set
+            page -= 1
+        print('\nOk. Work done.\nTotal handled: ' + str(handled))
+        return true_set
