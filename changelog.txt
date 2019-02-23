@@ -10,6 +10,7 @@
   • Updated proxy grubbing and handling.
   • Speedup more functions.
   • Fix bugs.
+  
 [Big Night Update] (v.0.3 -> v.1.0 Alpha)
   • Updated proxy handling.
   • Added passwords handling.
