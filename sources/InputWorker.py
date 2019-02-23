@@ -90,3 +90,16 @@ class InputWorker(object):
                     break
 
         return [login, passwords]
+
+    def ThreadCount():
+        threadcount = input('\nHow many threads do you want? (Better use from 2 to 4 threads): ')
+        while True:
+            try:
+                threadcount = int(threadcount)
+                if threadcount > 5 or threadcount < 1:
+                    threadcount = input('[ERROR] Invalid threads count. (1 < x < 5)\nHow many threads do you want? (Better use from 2 to 4 threads): ')
+                else:
+                    break
+            except:
+                threadcount = input('\n[ERROR] How many threads do you want? (Better use from 2 to 4 threads): ')
+        return threadcount

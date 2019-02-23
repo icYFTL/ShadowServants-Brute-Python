@@ -21,3 +21,12 @@ class PasswordWorker(object):
         except:
             print('I can\'t write it.')
             exit()
+    def GetLen(path):
+        if os.path.exists(path):
+            f = open(path,'r')
+            data = f.read()
+            data = data.split('\n')
+            f.close()
+            return len(data)
+        else:
+            return False

@@ -1,10 +1,11 @@
-import requests
-import time
+import sys
+sys.path.append("./sources/")
+
 from preview import preview
 from InputWorker import InputWorker
 from ProxyWorker import ProxyWorker
 from Cracker import Cracker
-import sys
+import Threads
 
 
 selected_mode = ''
@@ -26,17 +27,19 @@ inputs = InputWorker.content_getter()
 login = inputs[0]
 passwords = inputs[1]
 
+inputs = InputWorker.ThreadCount()
+threadcount = inputs
+
 ###### WorkOut ######
 
 if selected_proxy == True:
     proxies = ProxyWorker.AutoGrabber(pages)
-    cracker = Cracker()
-    cracker.session_get(proxies,login,passwords)
+    Threads.ThreadsCreator(proxies,login,passwords,threadcount)
+
 
 elif selected_proxy == False:
     print('Smth went wrong with proxies.\nShutting down.')
     exit()
 else:
     proxies = selected_proxy
-    cracker = Cracker()
-    cracker.session_get(proxies,login,passwords)
+    Threads.ThreadsCreator(proxies, login, passwords, threadcount)
