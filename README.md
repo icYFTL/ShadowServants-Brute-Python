@@ -1,5 +1,7 @@
-# ShadowServants-Brute-Python
+# ShadowServants Brute
 Brute for shadowservants, Python
 
-[Beta]
+Alpha version, ready to brute.
+
+
 

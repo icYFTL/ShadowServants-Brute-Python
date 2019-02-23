@@ -15,4 +15,3 @@ class preview(object):
             else:
                 sys.stdout.write(corp[i])
                 sys.stdout.flush()
-        print('Available modes: \n1 - BruteMode')

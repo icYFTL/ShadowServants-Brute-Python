@@ -19,13 +19,24 @@ preview.do()
 ###### Data Input ######
 
 inputs = InputWorker.initializator()
-selected_mode = inputs[0]
-selected_proxy = inputs[1]
+selected_proxy = inputs[0]
+pages = inputs[1]
+
+inputs = InputWorker.content_getter()
+login = inputs[0]
+passwords = inputs[1]
 
 ###### WorkOut ######
 
 if selected_proxy == True:
-    proxies = ProxyWorker.AutoGrabber()
-
+    proxies = ProxyWorker.AutoGrabber(pages)
     cracker = Cracker()
-    cracker.session_get(proxies)
+    cracker.session_get(proxies,login,passwords)
+
+elif selected_proxy == False:
+    print('Smth went wrong with proxies.\nShutting down.')
+    exit()
+else:
+    proxies = selected_proxy
+    cracker = Cracker()
+    cracker.session_get(proxies,login,passwords)
