@@ -1,7 +1,9 @@
 # ShadowServants Brute
 Brute for shadowservants, Python
 
-Alpha version, ready to brute.
+[Beta] Version of SSBrute.
+
+Warning: use at own risk. Unstable version.
 
 
 
