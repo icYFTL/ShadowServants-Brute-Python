@@ -9,7 +9,7 @@ handled = 0
 
 class BadParser(object):
     def Grab(page):
-        print('[Bad parser v0.3 beta]\n')
+        print('\n[Bad parser v0.3 beta]\n')
         global true_set
         global handled
         while page != 0:
