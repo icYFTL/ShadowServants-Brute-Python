@@ -1,0 +1,12 @@
+[Initial Commit] (v.0.1)
+  • Added basic functions.
+  • BadParser inspiration.
+
+[Update] (v.0.1 -> v.0.2)
+  • Updated BadParser's slow algorithm.
+  • Fix bugs.
+
+[Proxy Handling Update] (v.0.2 -> v.0.3)
+  • Updated proxy grubbing and handling.
+  • Speedup more functions.
+  • Fix bugs.
