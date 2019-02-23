@@ -13,7 +13,7 @@ class BadParser(object):
         global true_set
         global handled
         while page != 0:
-            print('Wait for data from proxy server.\n')
+            print('\nWait for data from proxy server.\n')
             timer = Stopwatch.create_thread()
             data = requests.get("https://proxylist.me/?protocol=1&filtrar=Filtrar&page="+str(page)).text
             print('Got data. Parsing initializated.\nTime spent: '+str(timer.secs) + ' secs.\n')
