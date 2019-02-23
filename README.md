@@ -1,2 +1,3 @@
-# ShadowServants-Brute-Python
-Brute for shadowservants, Python3
+# BadParser [v.0.3]
+
+Ez proxy parser, python3.
