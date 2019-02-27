@@ -1,36 +1,45 @@
-# Version 0.3
+# Version 1.0 alpha
+'''
+How to use:
+    Example:
+        type_of_proxy = 1 # 1 - http, 2 - https, 3 - socks4, 4 - socks5
+        proxycount = 5000 # Up to 10000 besides socks5(socks 5 up to 200)
 
-import re
+        a = BadParser(type_of_proxy,proxycount)
+        data = a.Grab()
+
+        # data = [1.1.1.1:8000, ...]
+'''
 import requests
-import Stopwatch
 
-true_set = []
-handled = 0
+class BadParser:
+    def __init__(self, kind, count):
+        print('[BadParser v.1.0 alpha]\n')
+        if kind == 1:
+            self.kind = 'http'
+        elif kind == 2:
+            self.kind = 'https'
+        elif kind == 3:
+            self.kind = 'socks4'
+        elif kind == 4:
+            self.kind = 'socks5'
 
-class BadParser(object):
-    def Grab(page):
-        print('[Bad parser v0.3 beta]\n')
-        global true_set
-        global handled
-        while page != 0:
-            print('\nWait for data from proxy server.\n')
-            timer = Stopwatch.create_thread()
-            data = requests.get("https://proxylist.me/?protocol=1&filtrar=Filtrar&page="+str(page)).text
-            print('Got data. Parsing initializated.\nTime spent: '+str(timer.secs) + ' secs.\n')
-            timer.kill_thread()
-            data = data.replace(' ','')
-            proxy = re.findall(r'<tdclass=\"ip\"><ahref=\"[A-Za-z\/0-9-]+\">[0-9]+.[0-9]+.[0-9]+.[0-9]+</a></td>\n\n<tdclass=\"port\">[0-9]+', data)
-            for i in proxy:
-                prox = ''
-                i = str(i)
-                i = i.replace('</a></td>\n\n<tdclass="port">',':')
-                found = False
-                for j in range(len(i)):
-                    if (str.isdecimal(i[j]) and i[j-1] == '>') or (found):
-                        found = True
-                        prox += i[j]
-                true_set.append(prox)
-                handled += 1
-            page -= 1
-        print('\nOk. Work done.\nTotal handled: ' + str(handled))
-        return true_set
+        self.count = count
+        self.handled = 0
+        self.proxy_list = []
+
+    def Grab(self):
+        print('Work initiated. Getting data from server.')
+        r = requests.get('https://www.proxy-list.download/api/v1/get?type={}&anon=elite'.format(self.kind))
+        print('Getting done. Parsing started.')
+        r = r.text.split('\r\n')
+        for i in r:
+            if int(self.handled) < int(self.count):
+                if i != '':
+                    self.proxy_list.append(i)
+                    self.handled += 1
+            else:
+                break
+        print('Work done.\n')
+        return self.proxy_list
+
