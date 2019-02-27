@@ -8,14 +8,16 @@ from Cracker import Cracker
 import Threads
 
 
-selected_mode = ''
-selected_proxy = ''
 
+###### VARS ######
+
+selected_proxy = ''
 
 
 ###### PREVIEW ######
 
 preview.do()
+
 
 ###### Data Input ######
 
@@ -29,6 +31,7 @@ passwords = inputs[1]
 
 inputs = InputWorker.ThreadCount()
 threadcount = inputs
+
 
 ###### WorkOut ######
 

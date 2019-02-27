@@ -35,16 +35,16 @@ class InputWorker(object):
                 else:
                     if (selected_proxy == 'y'):
                         selected_proxy = True
-                        pages = input('How many proxies do you neeed? (50-70 recommended and 10 < x < 200): ')
+                        pages = input('How many proxies do you neeed? (50-70 recommended and 10 < x < 10000): ')
                         while True:
                             try:
                                 pages = int(pages)
-                                if pages < 10 or pages > 200:
+                                if pages < 10 or pages > 10000:
                                     raise Exception
                                 else:
                                     break
                             except:
-                                pages = input('\n\n[ERROR] How many proxies do you neeed? (50-70 recommended and 10 < x < 200): ')
+                                pages = input('\n\n[ERROR] How many proxies do you neeed? (50-70 recommended and 10 < x < 10000): ')
 
                     else:
                         selected_proxy = False
@@ -67,7 +67,7 @@ class InputWorker(object):
     def content_getter():
         login = ''
         passwords = ''
-        login = input('Give the login: ')
+        login = input('Give me the login, which will be bruted: ')
         passwords = input(
             '\nUse rockyou? (I\'ll download it right now.)\nOr you can use your password list.\n\ny-rockyou, n-custom dictionary: ')
         passwords.lower()

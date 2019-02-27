@@ -4,7 +4,7 @@ import time
 
 class preview(object):
     def do():
-        print('[SSBrute] Beta v.1.1')
+        print('[SSBrute] v.1.1')
         corp = 'by icYFTL\n\n'
 
         for i in range(len(corp)):

@@ -10,7 +10,7 @@ class ProxyWorker (object):
             return False
         if (os.path.splitext(path)[1] != '.txt'):
             return False
-        f = open(path, 'r')
+        f = open(path, 'r',encoding='utf-8')
         line = f.readline().replace('\\n','')
         line = line.strip()
         while(line):
@@ -21,8 +21,10 @@ class ProxyWorker (object):
         return proxies
     
     def AutoGrabber(pages):
-        data = BadParser.Grab(int(pages)//16)
-        ProxyWorker.FileCreating(data)
+        prox = BadParser(2,pages)
+        data = prox.Grab()
+        if ProxyWorker.FileCreating(data) == False:
+            print('Can\'t save proxies.\n')
         return data
 
     def DirectoryChecker():
@@ -37,7 +39,7 @@ class ProxyWorker (object):
     def FileCreating(data):
         if ProxyWorker.DirectoryChecker() == False:
             return False
-        f = open('./proxies/last_proxies.txt','w')
+        f = open('./proxies/last_proxies.txt','w',encoding='utf-8')
         for i in data:
             f.write(i+'\n')
         f.close()

