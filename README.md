@@ -1,3 +1,3 @@
-# BadParser [v.0.3]
+# BadParser
 
 Ez proxy parser, python3.
