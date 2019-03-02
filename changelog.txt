@@ -1,4 +1,26 @@
-[Beta] Threading Update:
-  
-  • Added threads support.
-  • Fixes.
+[Initial Commit] (v.0.1)
+
+   • Added basic functions.
+  • Added threads support.	  • BadParser inspiration.
+  • Fixes.	
+ [Update] (v.0.1 -> v.0.2)
+  • Updated BadParser's slow algorithm.
+  • Fix bugs.
+
+ [Proxy Handling Update] (v.0.2 -> v.0.3)
+  • Updated proxy grubbing and handling.
+  • Speedup more functions.
+  • Fix bugs.
+
+ [Big Night Update] (v.0.3 -> v.1.0 Alpha)
+  • Updated proxy handling.
+  • Added passwords handling.
+  • Added "rockyou" dictionary auto-downloading.
+  • Added a lot of little short-innovations.
+  • A lot of bugs has been fixed.
+
+ [Threading Update] (v.1.0 Alpha -> v.1.1)
+  • Threads added.
+  • BadParser update.
+  • Speed improvements.
+  • Bugs fixes.
