@@ -1,26 +1,34 @@
-[Initial Commit] (v.0.1)
+[Initial Commit] (v0.1)
+  • Added basic functions.
+  • BadParser inspiration.
 
-   • Added basic functions.
-  • Added threads support.	  • BadParser inspiration.
-  • Fixes.	
- [Update] (v.0.1 -> v.0.2)
+[Update] (v.0.1 -> v0.2)
   • Updated BadParser's slow algorithm.
   • Fix bugs.
 
- [Proxy Handling Update] (v.0.2 -> v.0.3)
+[Proxy Handling Update] (v0.2 -> v0.3)
   • Updated proxy grubbing and handling.
   • Speedup more functions.
   • Fix bugs.
 
- [Big Night Update] (v.0.3 -> v.1.0 Alpha)
+[Big Night Update] (v0.3 -> v1.0 Alpha)
   • Updated proxy handling.
   • Added passwords handling.
   • Added "rockyou" dictionary auto-downloading.
-  • Added a lot of little short-innovations.
+  • Added a lot of little short-improvements.
   • A lot of bugs has been fixed.
 
- [Threading Update] (v.1.0 Alpha -> v.1.1)
+[Threading Update] (v1.0 Alpha -> v1.1)
   • Threads added.
   • BadParser update.
   • Speed improvements.
+  • Bugs fixes.
+
+[Big Stability Update] (v1.1 -> v1.2)
+  • Threads synchronize update.
+  • Threads algorithm update.
+  • BadParser short-update.
+  • Design short-update.
+  • Changed 'https' proxies to 'socks4'.
+  • Code improvements.
   • Bugs fixes.

@@ -1,5 +1,2 @@
-# ShadowServants Brute
+# ShadowServants Brute [SSBrute]
 Brute for shadowservants, Python
-
-Ready to inspire.
-

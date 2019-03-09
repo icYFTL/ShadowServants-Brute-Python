@@ -5,21 +5,19 @@ import os
 
 class InputWorker(object):
     def initializator():
-        selected_proxy = ''
-        pages = ''
+        selected_proxy = None
+        pages = None
         if os.path.exists('./proxies/last_proxies.txt'):
             selected_proxy = input('Looks like i have already parsed proxy. Use them? y/n: ')
-            print('\n')
             selected_proxy.lower()
             while True:
-                if (selected_proxy != 'y' and selected_proxy != 'n'):
+                if selected_proxy != 'y' and selected_proxy != 'n':
                     print('[Error]' + 'Bad answers. y/n\n')
                     selected_proxy = input('Looks like i have already parsed proxy. Use them? y/n: ')
-                    print('\n')
                     selected_proxy.lower()
                 else:
                     break
-        if selected_proxy == '' or selected_proxy == 'n':
+        if selected_proxy is None or selected_proxy is 'n':
             try:
                 os.remove('./proxies/last_proxies.txt')
             except:
@@ -27,15 +25,15 @@ class InputWorker(object):
 
             selected_proxy = input('Use auto-proxy? y/n: ')
             selected_proxy.lower()
-            while (True):
-                if (selected_proxy != 'y' and selected_proxy != 'n'):
+            while True:
+                if selected_proxy != 'y' and selected_proxy != 'n':
                     print('[Error]' + 'Bad answers. y/n\n')
                     selected_proxy = input('Use auto-proxy? y/n: ')
                     selected_proxy.lower()
                 else:
-                    if (selected_proxy == 'y'):
+                    if selected_proxy is 'y':
                         selected_proxy = True
-                        pages = input('How many proxies do you neeed? (50-70 recommended and 10 < x < 10000): ')
+                        pages = input('How many proxies do you need? (600-700 recommended and 10 < x < 10000): ')
                         while True:
                             try:
                                 pages = int(pages)
@@ -44,16 +42,17 @@ class InputWorker(object):
                                 else:
                                     break
                             except:
-                                pages = input('\n\n[ERROR] How many proxies do you neeed? (50-70 recommended and 10 < x < 10000): ')
+                                pages = input(
+                                    '\n\n[ERROR] How many proxies do you need? (600-700 recommended and 10 < x < 10000): ')
 
                     else:
                         selected_proxy = False
                     break
-            if (selected_proxy == False):
+            if selected_proxy is False:
                 selected_proxy = input('\nOk. Give me path to the file with proxies.\nOnly .txt allowed.\n\nPath: ')
-                while (True):
+                while True:
                     beta = ProxyWorker.handler(selected_proxy)
-                    if (beta == False):
+                    if beta is False:
                         selected_proxy = input('[Error]' + ' Bad proxies or path.' + '\n\nPath: ')
                     else:
                         selected_proxy = beta
@@ -62,29 +61,36 @@ class InputWorker(object):
             selected_proxy = './proxies/last_proxies.txt'
             selected_proxy = ProxyWorker.handler(selected_proxy)
 
+        return [selected_proxy, str(pages)]
 
-        return [selected_proxy,str(pages)]
     def content_getter():
-        login = ''
-        passwords = ''
-        login = input('Give me the login, which will be bruted: ')
+        login = None
+        passwords = None
+
+        login = input('\nGive me the login, which will be bruted: ')
+        while True:
+            if len(login) < 1:
+                print('[Error] Bad login len.')
+                login = input('\nGive me the login, which will be bruted: ')
+            else:
+                break
         passwords = input(
             '\nUse rockyou? (I\'ll download it right now.)\nOr you can use your password list.\n\ny-rockyou, n-custom dictionary: ')
         passwords.lower()
-        while (True):
-            if (passwords != 'y' and passwords != 'n'):
+        while True:
+            if passwords != 'y' and passwords != 'n':
                 print('[Error]' + 'Bad answers. y/n\n')
-                passwords = input('y-rockyou, n-custom dictionary: ')
+                passwords = input('y - [rockyou], n - [custom dictionary]: ')
                 passwords.lower()
             else:
                 break
-        if passwords == 'y':
+        if passwords is 'y':
             PasswordWorker.GetRockYou()
             passwords = './dictionaries/rockyou.txt'
-        if passwords == 'n':
+        if passwords is 'n':
             passwords = input('\nOk. Give me path to the file with passwords.\nOnly .txt allowed.\n\nPath: ')
-            while (True):
-                if os.path.exists(passwords) == False:
+            while True:
+                if os.path.exists(passwords) is False:
                     passwords = input('[Error]' + ' Bad path.' + '\n\nPath: ')
                 else:
                     break
@@ -92,14 +98,14 @@ class InputWorker(object):
         return [login, passwords]
 
     def ThreadCount():
-        threadcount = input('\nHow many threads do you want? (Better use from 2 to 4 threads): ')
+        threadcount = input('\nHow many threads do you want? (1 < x < 10): ')
         while True:
             try:
                 threadcount = int(threadcount)
-                if threadcount > 5 or threadcount < 1:
-                    threadcount = input('[ERROR] Invalid threads count. (1 < x < 5)\nHow many threads do you want? (Better use from 2 to 4 threads): ')
+                if threadcount > 10 or threadcount < 1:
+                    threadcount = input('[Error] Invalid threads count. (1 < x < 10)\n\nHow many threads do you want?: ')
                 else:
                     break
             except:
-                threadcount = input('\n[ERROR] How many threads do you want? (Better use from 2 to 4 threads): ')
+                threadcount = input('[Error] Invalid threads count. (1 < x < 10)\n\nHow many threads do you want?: ')
         return threadcount

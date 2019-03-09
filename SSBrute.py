@@ -8,18 +8,12 @@ from Cracker import Cracker
 import Threads
 
 
-
-###### VARS ######
-
-selected_proxy = ''
-
-
 ###### PREVIEW ######
 
 preview.do()
 
 
-###### Data Input ######
+###### DATA INPUT ######
 
 inputs = InputWorker.initializator()
 selected_proxy = inputs[0]
@@ -33,7 +27,7 @@ inputs = InputWorker.ThreadCount()
 threadcount = inputs
 
 
-###### WorkOut ######
+###### WORKOUT ######
 
 if selected_proxy == True:
     proxies = ProxyWorker.AutoGrabber(pages)
@@ -41,7 +35,7 @@ if selected_proxy == True:
 
 
 elif selected_proxy == False:
-    print('Smth went wrong with proxies.\nShutting down.')
+    print('[Error] Something went wrong with proxies.\n\nShutting down...')
     exit()
 else:
     proxies = selected_proxy

@@ -21,7 +21,8 @@ class ProxyWorker (object):
         return proxies
     
     def AutoGrabber(pages):
-        prox = BadParser(2,pages)
+        print('\n')
+        prox = BadParser(3,pages)
         data = prox.Grab()
         if ProxyWorker.FileCreating(data) == False:
             print('Can\'t save proxies.\n')

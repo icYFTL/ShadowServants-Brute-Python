@@ -25,9 +25,14 @@ class PasswordWorker(object):
     def GetLen(path):
         if os.path.exists(path):
             f = open(path,'r',encoding='utf-8')
-            data = f.read()
-            data = data.split('\n')
+            data = f.readline()
+            counter = 0
+            while data:
+                if data != '' and data != '\n':
+                    counter += 1
+                data = f.readline()
             f.close()
-            return len(data)
+
+            return counter
         else:
             return False

@@ -1,4 +1,4 @@
-# Version 1.0 alpha
+# Version 1.1 alpha
 '''
 How to use:
     Example:
