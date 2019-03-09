@@ -1,4 +1,4 @@
-# Version 1.0 alpha
+# Version 1.1 alpha
 '''
 How to use:
     Example:
@@ -14,7 +14,7 @@ import requests
 
 class BadParser:
     def __init__(self, kind, count):
-        print('[BadParser v.1.0 alpha]\n')
+        print('[BadParser v.1.1 alpha]\n')
         if kind == 1:
             self.kind = 'http'
         elif kind == 2:
