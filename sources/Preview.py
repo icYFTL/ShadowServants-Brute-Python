@@ -7,7 +7,7 @@ class Preview(object):
     def do():
         CLSWork = ConsoleWorker()
         CLSWork.ClearConsole()
-        print('[SSBrute] v.1.3')
+        print('[SSBrute] v.1.3.1')
         corp = 'by icYFTL\n\n'
 
         for i in range(len(corp)):

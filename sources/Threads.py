@@ -16,7 +16,8 @@ class Threads(Thread):
     def run(self):
         print('Thread #' + str(self.name) + ' is up and running.')
         cracker = Cracker(self.proxy,self.login,self.passwords,self.passwordsids,str(self.name))
-        print('Thread #' + str(self.name) + ' completed.')
+        if ThreadStatic.Done is False:
+            print('Thread #' + str(self.name) + ' completed.')
 
 passwords_len = None
 
