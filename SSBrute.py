@@ -1,16 +1,16 @@
 import sys
 sys.path.append("./sources/")
 
-from preview import preview
+from Preview import Preview
 from InputWorker import InputWorker
 from ProxyWorker import ProxyWorker
-from Cracker import Cracker
 import Threads
+
 
 
 ###### PREVIEW ######
 
-preview.do()
+Preview.do()
 
 
 ###### DATA INPUT ######
@@ -18,14 +18,9 @@ preview.do()
 inputs = InputWorker.initializator()
 selected_proxy = inputs[0]
 pages = inputs[1]
-
-inputs = InputWorker.content_getter()
-login = inputs[0]
-passwords = inputs[1]
-
-inputs = InputWorker.ThreadCount()
-threadcount = inputs
-
+login = inputs[2]
+passwords = inputs[3]
+threadcount = inputs[4]
 
 ###### WORKOUT ######
 
@@ -36,7 +31,7 @@ if selected_proxy == True:
 
 elif selected_proxy == False:
     print('[Error] Something went wrong with proxies.\n\nShutting down...')
-    exit()
+    exit(-9)
 else:
     proxies = selected_proxy
     Threads.ThreadsCreator(proxies, login, passwords, threadcount)

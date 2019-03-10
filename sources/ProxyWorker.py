@@ -1,30 +1,30 @@
 import os
 from BadParser import BadParser
-import time
 
 proxies = []
 
-class ProxyWorker (object):
+
+class ProxyWorker(object):
     def handler(path):
-        if (os.path.isfile(path=path) != True):
+        if os.path.isfile(path=path) != True:
             return False
-        if (os.path.splitext(path)[1] != '.txt'):
+        if os.path.splitext(path)[1] != '.txt':
             return False
-        f = open(path, 'r',encoding='utf-8')
-        line = f.readline().replace('\\n','')
+        f = open(path, 'r', encoding='utf-8')
+        line = f.readline().replace('\\n', '')
         line = line.strip()
-        while(line):
+        while line:
             proxies.append(line)
-            line = f.readline().replace('\\n','')
+            line = f.readline().replace('\\n', '')
             line = line.strip()
         f.close()
         return proxies
-    
+
     def AutoGrabber(pages):
         print('\n')
-        prox = BadParser(3,pages)
+        prox = BadParser(3, pages)
         data = prox.Grab()
-        if ProxyWorker.FileCreating(data) == False:
+        if ProxyWorker.FileCreating(data) is False:
             print('Can\'t save proxies.\n')
         return data
 
@@ -38,9 +38,9 @@ class ProxyWorker (object):
             return False
 
     def FileCreating(data):
-        if ProxyWorker.DirectoryChecker() == False:
+        if ProxyWorker.DirectoryChecker() is False:
             return False
-        f = open('./proxies/last_proxies.txt','w',encoding='utf-8')
+        f = open('./proxies/last_proxies.txt', 'w', encoding='utf-8')
         for i in data:
-            f.write(i+'\n')
+            f.write(i + '\n')
         f.close()

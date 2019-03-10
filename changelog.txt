@@ -32,3 +32,10 @@
   • Changed 'https' proxies to 'socks4'.
   • Code improvements.
   • Bugs fixes.
+
+[Update] (v1.2 -> v1.3)
+  • Updated threads work model.
+  • Increased max count of threads (was - 10, now - 50).
+  • Code refactoring.
+  • Added script for "console-working".
+  • Bugs fixes.
