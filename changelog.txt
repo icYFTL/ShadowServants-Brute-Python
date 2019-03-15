@@ -43,3 +43,9 @@
 [HotFix] (v1.3 -> 1.3.1)
   • Proxy working fixed.
   • Improvements.
+
+[Threading Update] (v1.3.1 -> v1.3.2)
+  • Threads working fixed.
+  • Fixed fake good result.
+  • Increased max count of threads (was - 50, now - 100).
+  • BadParser update.

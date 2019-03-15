@@ -35,17 +35,24 @@ class InputWorker(object):
                     else:
                         if selected_proxy is 'y':
                             selected_proxy = True
-                            pages = input('How many proxies do you need? (600-700 recommended and 10 < x < 10000): ')
+                            pages = input('How many proxies do you need? (10 < x < max): ')
                             while True:
-                                try:
-                                    pages = int(pages)
-                                    if pages < 10 or pages > 10000:
-                                        raise Exception
-                                    else:
+                                if pages.isdecimal():
+                                    try:
+                                        if int(pages) < 10 or int(pages) > 10000:
+                                            raise Exception
+                                        else:
+                                            break
+                                    except:
+                                        pages = input(
+                                            '\n\n[ERROR] How many proxies do you need? (10 < x < max): ')
+                                else:
+                                    pages = pages.lower()
+                                    if pages == 'max':
                                         break
-                                except:
-                                    pages = input(
-                                        '\n\n[ERROR] How many proxies do you need? (600-700 recommended and 10 < x < 10000): ')
+                                    else:
+                                        pages = input(
+                                            '\n\n[ERROR] How many proxies do you need? (10 < x < max): ')
                         else:
                             selected_proxy = False
                         break
@@ -92,17 +99,18 @@ class InputWorker(object):
                     else:
                         break
 
-            threadcount = input('\nHow many threads do you want? (1 < x < 50): ')
+            threadcount = input('\nHow many threads do you want? (1 < x < 100): ')
             while True:
                 try:
                     threadcount = int(threadcount)
-                    if threadcount > 50 or threadcount < 1:
+                    if threadcount > 100 or threadcount < 1:
                         threadcount = input(
-                            '[Error] Invalid threads count. (1 < x < 50)\n\nHow many threads do you want?: ')
+                            '[Error] Invalid threads count. (1 < x < 100)\n\nHow many threads do you want?: ')
                     else:
                         break
                 except:
-                    threadcount = input('[Error] Invalid threads count. (1 < x < 50)\n\nHow many threads do you want?: ')
+                    threadcount = input(
+                        '[Error] Invalid threads count. (1 < x < 100)\n\nHow many threads do you want?: ')
             return [selected_proxy, pages, login, passwords, threadcount]
 
         except KeyboardInterrupt:

